@@ -1,0 +1,49 @@
+
+enum RetCode{	//应答码，非0为错误，1****为公共错误码
+	SUCC = 0;	//成功
+	TOKEN_ERROR = 10001;	//token错误
+	PARAM_ERROR = 10002;	//参数错误
+	LOGIN_REQUIRED = 10003;	//需要登录
+	NOT_FOUND = 10004;	//接口不存在
+	IS_BANNED = 10005;	//已拉黑
+	UNVERIFIED = 10006;	//需要认证
+	ORDER_NOT_EXISTS = 10007;	//订单不存在
+	SERVER_ERROR = 10008;	//服务器错误
+	ERROR_ORDER_STATUS = 10009;	//订单状态不一致
+}
+
+enum OsType{	//操作系统类型
+	OS_ANDROID = 1; //android
+	OS_IOS = 2; //ios
+}
+
+enum PayStatus{
+	NO_PAY = 0;		//非在线支付，未支付
+	PAY_SUCCESS = 1; //已支付
+	PAY_FINISHED = 2;	//支付失败
+	REFUND_WAIT = 3;	//退款中
+	REFUND_SUCCESS = 4;	//退款成功
+	PAY_WAIT = 5;	//支付中
+}
+
+
+message PkgUserRegisterRsp{		//用户注册应答包
+	required int32 user_id = 1;	//用户ID
+	optional OsType os = 2;
+}
+
+message PkgUserRegisterRsp{		//用户注册应答包
+	required int32 user_id = 1;	//用户ID
+}
+
+message PkgUserSuggestReq{
+	optional string email = 1;	//邮箱地址
+	required string comment = 2;	//评论内容
+	optional string phone_no = 3;	//电话号码
+	optional string order_uuid = 4;	//订单uuid
+	required int32 user_id = 5;	//用户id
+}
+
+message PkgWxPayRefundRsp{
+
+}
