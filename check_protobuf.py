@@ -20,12 +20,13 @@ i = 0
 for line in open(path):
     i = i + 1
     list_option = line.lstrip().split(' ')
+    base_type = ['int32', 'int64', 'uint32', 'uint64', 'sint32', 'sint64', 'fixed32', 'fixed64', 'bool', 'bytes', 'string', 'float']
     if list_option[0] in ['message', 'enum']:
         name_list = line.split('{')[0].split(' ')[1]
         if name_list.strip() in message:
             repeat.append(name_list.strip())
         message.append(name_list.strip())
-    elif list_option[0] in ['optional', 'repeated', 'required'] and (list_option[1].lower() not in ['int32', 'string', 'float']):
+    elif list_option[0] in ['optional', 'repeated', 'required'] and (list_option[1].lower() not in base_type):
         used.append(list_option[1])
     else:
         continue
